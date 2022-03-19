@@ -1,19 +1,19 @@
 import ImageKeyboardResponsePlugin from "@jspsych/plugin-image-keyboard-response";
 
-class imageKeyComponent {
+class testPhaseTrial {
     static getTrial() {
         let imageHeight = Math.round(window.screen.availHeight / 2);
         let trial = {
             type: ImageKeyboardResponsePlugin,
             stimulus: jsPsych.timelineVariable("path"),
-            stimulus_duration: 1000,
-            trial_duration: 2000,
+            response_ends_trial: true,
             maintain_aspect_ratio: true,
-            stimulus_height: imageHeight
+            stimulus_height: imageHeight,
+            choices: ["0", "1"]
         };
 
         return trial;
     }
 }
 
-export default imageKeyComponent;
+export default testPhaseTrial;

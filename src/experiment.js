@@ -18,7 +18,8 @@ import * as id from "./components/idComponent";
 import * as instructions from "./components/instructionsComponent";
 import * as participantDetails from "./components/participantDetailsComponent";
 
-import { showStimProcedure } from "./procedures/showStimProcedure";
+import { studyProcedure } from "./procedures/studyProcedure";
+import { testProcedure } from "./procedures/testProcedure"
 
 import EgoziService from "./Services/EgoziService";
 import NutellaService from "./Services/NutellaService";
@@ -79,7 +80,8 @@ export async function run({ assetPaths, input = {}, environment }) {
 
   timeline.push(instructions.default.getTrial());
 
-  timeline.push((new showStimProcedure("stimuli", "stim", 4, "jpg")).getProcedure());
+  timeline.push((new studyProcedure("stimuli", "", 50, 50, "png")).getProcedure());
+  timeline.push((new testProcedure("stimuli", "", 50, 50, "png")).getProcedure());
 
   let sendDataToServer = {
     type: CallFunctionPlugin,
@@ -98,7 +100,7 @@ export async function run({ assetPaths, input = {}, environment }) {
   let endMessage = {
     type: HtmlKeyboardResponsePlugin,
     stimulus: '<p style="font-size: 48px;">Thank you!</p>',
-    choices: jsPsych.NO_KEYS
+    choices: "NO_KEYS"
   };
 
   timeline.push(endMessage)
